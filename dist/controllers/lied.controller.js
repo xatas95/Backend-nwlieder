@@ -13,32 +13,29 @@ exports.deleteLied = exports.updateLied = exports.createLied = exports.getLiedby
 const database_1 = require("../database");
 const getLied = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = yield database_1.pool.query('SELECT * FROM lied');
+        const response = yield database_1.pool.query("SELECT * FROM lied");
         return res.status(200).json(response.rows);
     }
     catch (error) {
-        return res.status(200).json('esta vuelta no funciona');
-        console.log(error);
+        return res.status(200).json(`esta vuelta no funciona ${error}`);
     }
 });
 exports.getLied = getLied;
 const getLiedbyId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = parseInt(req.params.id);
     try {
-        const response = yield database_1.pool.query('SELECT * FROM lied WHERE id = $1', [id]);
+        const response = yield database_1.pool.query("SELECT * FROM lied WHERE id = $1", [id]);
         return res.json(response.rows);
     }
     catch (error) {
-        return res.json('no esta funcionando');
+        return res.json("no esta funcionando");
     }
 });
 exports.getLiedbyId = getLiedbyId;
 const createLied = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, mp3, description, img, etappe, favorite } = req.body;
+    const { name, audios, description, img, etappe, favorite, liedtext } = req.body;
     try {
-        const response = yield database_1.pool.query('INSERT INTO lied (name, mp3, description, img, etappe, favorite) VALUES ($1, $2, $3, $4, $5, $6)', [
-            name, mp3, description, img, etappe, favorite
-        ]);
+        const response = yield database_1.pool.query("INSERT INTO lied (name, audios, description, img, etappe, favorite, liedtext) VALUES ($1, $2, $3, $4, $5, $6, $7)", [name, audios, description, img, etappe, favorite, liedtext]);
         return res.json(`User erfolgreich erschafft`);
     }
     catch (error) {
@@ -48,24 +45,20 @@ const createLied = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.createLied = createLied;
 const updateLied = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { name, mp3, description, img, categorie, favorite, kommentare } = req.body;
+        const { name, audios, description, img, favorite, etappe, liedtext, } = req.body;
         const id = parseInt(req.params.id);
-        const response = yield database_1.pool.query('UPDATE lied SET name = $1, mp3 = $2, description = $3, img = $4, categorie = $6, favorite = $7, kommentare = array_append(kommentare, $8) WHERE id = $5 ', [
-            name, mp3, description, img, id, categorie, favorite, kommentare
-        ]);
-        return res.json(`Lied nummer ${id} erfolgreich aktualisiert`);
+        const response = yield database_1.pool.query("UPDATE lied SET name = $1, audios = $2, description = $3, img = $4, favorite = $6, etappe = $7, liedtext = $8 WHERE id = $5 ", [name, audios, description, img, id, favorite, etappe, liedtext]);
+        return res.json(`erfolgreich`);
     }
     catch (error) {
         console.log(`que ha pasado aqui ${error}`);
-        return res.status(200).json('no funciona');
+        return res.status(200).json("no funciona");
     }
 });
 exports.updateLied = updateLied;
 const deleteLied = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = parseInt(req.params.id);
-    const response = yield database_1.pool.query(`DELETE FROM lied WHERE id = $1`, [
-        id
-    ]);
-    return res.json('User wurde erfolgreich gelöscht');
+    const response = yield database_1.pool.query("DELETE FROM lied WHERE id = $1", [id]);
+    return res.json("User wurde erfolgreich gelöscht");
 });
 exports.deleteLied = deleteLied;

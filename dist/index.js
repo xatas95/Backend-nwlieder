@@ -8,10 +8,11 @@ const lied_1 = __importDefault(require("./routes/lied"));
 const kommentare_1 = __importDefault(require("./routes/kommentare"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
+const port = 5000;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use((0, cors_1.default)());
 app.use(lied_1.default, kommentare_1.default);
-app.listen(5000, () => {
+app.listen(port, () => {
     console.log('backend');
 });

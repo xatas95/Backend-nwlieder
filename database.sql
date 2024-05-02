@@ -2,13 +2,12 @@ CREATE TABLE lied(
 
     id serial PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    versicle VARCHAR(500),
+    description VARCHAR(500),
     img VARCHAR,
-    mp3 VARCHAR,
+    audios VARCHAR[],
     created_at DATE DEFAULT CURRENT_DATA,
     etappe VARCHAR(20),
     favorite BOOLEAN,
-    kommentare: text[],
     liedText: VARCHAR,
 )
 
@@ -21,5 +20,7 @@ CREATE TABLE kommentare(
     created_at DATE DEFAULT CURRENT_TIMESTAMP,
     name VARCHAR(100) NOT NULL,
     description VARCHAR NOT NULL,
+    audio_id VARCHAR NOT NULL;
     FOREIGN KEY (id_lied) REFERENCES lied(id)
+    
 )
