@@ -1,7 +1,15 @@
 import express, { urlencoded } from "express";
 import IndexRoutes from "./routes/lied";
+
+import multerS3 from "multer-s3";
+import mysql from "mysql2";
 import IndexRoutesKommentare from './routes/kommentare'
 import cors from "cors";
+
+require("dotenv").config();
+
+
+
 
 
 const app = express();

@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const lied_1 = __importDefault(require("./routes/lied"));
 const kommentare_1 = __importDefault(require("./routes/kommentare"));
 const cors_1 = __importDefault(require("cors"));
+require("dotenv").config();
 const app = (0, express_1.default)();
 const port = 5000;
 app.use(express_1.default.json());
