@@ -26,6 +26,6 @@ jobs:
           aws_secret_key: "SvHC6RznBPXVqqUEJrWrQDUTctfp7lzEtDYJzKKi"
           application_name: 'bnwlieder'
           environment_name: 'bnwlieder-env'
-          version_label: ${{ github.sha }}
+          version_label: 12345
           region: us-east-1
           deployment_package: nodejs-app-build.zip
