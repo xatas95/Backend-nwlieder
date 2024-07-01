@@ -11,7 +11,7 @@ phases:
   pre_build:
     commands:
       - echo Run linting and tests...
-      - npm dev
+  
 
   build:
     commands:
