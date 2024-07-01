@@ -9,7 +9,7 @@ import {
 import multer from "multer";
 
 const s3Client = new S3Client({
-  region: "eu-central-1",
+  region: process.env.AWS_REGION,
   credentials: {
     accessKeyId: "AKIA4MTWG67RWFDMQDZB",
     secretAccessKey: "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",

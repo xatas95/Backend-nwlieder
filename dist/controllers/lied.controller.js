@@ -17,7 +17,7 @@ const database_1 = require("../database");
 const client_s3_1 = require("@aws-sdk/client-s3");
 const multer_1 = __importDefault(require("multer"));
 const s3Client = new client_s3_1.S3Client({
-    region: "eu-central-1",
+    region: process.env.AWS_REGION,
     credentials: {
         accessKeyId: "AKIA4MTWG67RWFDMQDZB",
         secretAccessKey: "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",
