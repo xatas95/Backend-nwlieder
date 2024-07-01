@@ -1,3 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20  # Specify the Node.js version
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+      
+  pre_build:
+    commands:
+      - echo Run linting and tests...
+      - npm run lint
+      - npm test
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the application...
+      - npm run build
+      - echo Build completed on `date`
+      - echo Packaging the application...
+      - zip -r build-package.zip .  # Zipping the compiled application
+
 artifacts:
   files:
-    - '**/*'
+    - build-package.zip
